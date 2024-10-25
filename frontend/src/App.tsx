@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { BACKEND_URL } from "./config";
 
 interface Seat {
   id: number;
@@ -16,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchSeats = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/getseats");
+        const response = await axios.get(`${BACKEND_URL}/getseats`);
         setSeats(response.data);
       } catch (error) {
         console.error("Error fetching seats:", error);
@@ -34,7 +35,7 @@ function App() {
     }
   
     try {
-      const response = await axios.post("http://localhost:3000/bookseats", {
+      const response = await axios.post(`${BACKEND_URL}/bookseats`, {
         numSeats: noOfSeats 
       });
       setbookedSeats(response.data.bookedSeats);
@@ -47,7 +48,7 @@ function App() {
   // handle reset
   const handleReset = async() => {
     try {
-      await axios.post("http://localhost:3000/resetseats");
+      await axios.post(`${BACKEND_URL}/resetseats`);
       setbookedSeats([]);
     } catch (error) {
       alert("Error while reseting seats")
@@ -57,7 +58,7 @@ function App() {
   // handle fill some seats
   const hanleFillSomeSeats = async() => {
     try {
-      const response = await axios.post("http://localhost:3000/fillSomeSeats");
+      const response = await axios.post(`${BACKEND_URL}/fillSomeSeats`);
       setbookedSeats(response.data.bookedSeats);
     } catch (error) {
       alert("error while filling some seats")
