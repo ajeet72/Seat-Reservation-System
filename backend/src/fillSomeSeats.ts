@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 
 // POST endpoint to randomly book seats
 router.post("/", async (req: Request, res: Response): Promise<void> => {
-  // Generate a random number of seats to book (between 20 and 30)
-  const randomNumSeats = Math.floor(Math.random() * 11) + 20;
-
+  
   try {
+    // Generate a random number of seats to book (between 20 and 30)
+    const randomNumSeats = Math.floor(Math.random() * 11) + 20;
     // Find all available (unbooked) seats, ordered by row and seat number
     const availableSeats = await prisma.seat.findMany({
       where: { is_booked: false },
