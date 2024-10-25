@@ -67,7 +67,17 @@ function App() {
   
   return (
     <div className="flex flex-col items-center">
-      <h1 className="font-bold text-2xl mb-4">Seat Booking</h1>
+      <div className="flex items-center justify-between m-4">
+        <h1 className="font-bold text-2xl mb-4">Seat Booking System</h1>
+        <a
+          href="https://github.com/ajeet72/Seat-Reservation-System"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:text-blue-700 font-medium ml-4 mb-3"
+        >
+          GitHub Repo Link
+        </a>
+      </div>
       <div className="grid grid-cols-7 gap-2">
         {seats
           .sort((a, b) => a.row_number - b.row_number || a.seat_number - b.seat_number)
